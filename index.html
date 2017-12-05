@@ -1,0 +1,99 @@
+<?php
+	include('src/SteemApi.php');
+	$config['webservice_url'] = 'steemd.steemgigs.org';
+	$api = new SteemApi($config);
+	
+	/**
+	$author = "surpassinggoogle";
+	date_default_timezone_set('UTC');
+	$dateNow = (new \DateTime())->format('Y-m-d\TH:i:s'); 
+	$date_8days_ago = date('Y-m-d\TH:i:s', strtotime('-1 days', strtotime($dateNow)));
+	$params = [$author, '', $date_8days_ago, 100];
+	$remote_content = $api->getDiscussionsByAuthorBeforeDate($params, 'websocket');	
+	var_dump($remote_content);
+		
+		
+		
+			if(isset($remote_content)){
+		if (array_key_exists('error', $remote_content)){
+			$return_value = "<br/>Something is not ok.</br>";
+		}
+		else 
+		{
+			$total_value = 0;
+			$total_votes = 0;
+			
+			foreach($remote_content as $rkey => $rvalue){
+				if($rvalue['pending_payout_value'] !== '0.000 SBD' && $rvalue['max_accepted_payout'] != 0){
+					
+					$tmp = explode(" ", $rvalue['pending_payout_value']);
+					$payout = $tmp[0];
+					
+					// check to see if we have something in the beneficaries array
+					if(count($rvalue['beneficiaries'] != 0)){
+						foreach($rvalue['beneficiaries'] as $kk => $vv){
+							if($vv['account'] == $author){
+								$payout = $payout*($vv['weight']/10000);
+							}
+						}
+					}
+					$total_value =+ $payout * 0.75;
+				}
+			}
+			echo "Total payout for $author: ".$total_value."\n";
+		}
+	}
+		**/
+		
+	$params = [];
+	$AccountTotal = $api->getAccountTotal($params, 'websocket');	
+	$IntendingWitnessTotal = $api->getIntendingWitnessCount($params, 'websocket');	
+	$ActiveWitnesses = $api->getActiveWitness($params, 'websocket');
+
+	//NaijaTalk
+    //$params = '["tag":"nigeria","limit":"2"}]';	
+	//$NaijaTalk = $api->getDiscussionsByActive($params, 'websocket');	
+	
+	
+	echo '<div style="background: black">';
+	echo '<div style="font-size:20px;color: white;">PRESENT NUMBER OF STEEM ACCOUNT:</div>';
+	echo '<div style="font-size:100px;color: white;">'.number_format($AccountTotal).'</div>';
+	echo '</div>';
+	
+	echo '<div style="padding-top: 4px;background: black">';
+	echo '<div style="font-size:20px;color: white;">TOTAL NUMBER OF  INTENDING WITNESSES:</div>';
+	echo '<div style="font-size:100px;color: white;">'.number_format($IntendingWitnessTotal).'</div>';
+	echo '</div>';
+	
+	
+	
+	echo '<div style="padding-top: 4px;background: black">';
+	echo '<div style="font-size:20px;color: white;">Powered by <a style="color: royalblue;" href="http://steemd.steemgigs.com">steemd.steemgigs.com<a> & <a style="color: royalblue;" href="http://steemit.com/@surpassinggoogle">@SurpassingGoogle[Witness]<a></div>';
+	echo '</div>';	
+	
+	
+	
+	
+	echo '<div style="padding-top: 4px;background: black">';
+	echo '<div style="font-size:20px;color: white;">Steem Experiment by <a style="color: royalblue;" href="http://steemit.com/@akintunde">Akintunde<a></div>';
+	echo '</div>';
+	
+	
+	
+	
+		
+		
+	
+	
+	
+	
+	
+
+
+	
+
+
+
+
+
+?>
