@@ -56,7 +56,7 @@ class SteemLayer {
             "jsonrpc" => "2.0",
             "method" => $method,
             "params" => $params,
-            "id" => 0
+            "id" => 1
             );
             
         $request_json = json_encode($request);

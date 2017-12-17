@@ -85,6 +85,12 @@ class SteemApi
         $result = $this->SteemLayer->call('get_account_votes', $params);
         return $result;
     }
+
+	public function getAccount($params)
+    {
+        $result = $this->SteemLayer->call('get_account', $params);
+        return $result;
+    }
     
     public function getAccountHistory($params)
     {
