@@ -1,0 +1,1 @@
+{"ticker":{"base":"STEEM","target":"USD","price":"3.07802443","volume":"","change":"-0.04850390","markets":[]},"timestamp":1513714742,"success":true,"error":""}

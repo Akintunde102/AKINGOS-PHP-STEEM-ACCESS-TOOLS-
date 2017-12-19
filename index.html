@@ -1,6 +1,6 @@
 <?php
 	include('src/SteemApi.php');
-	$config['webservice_url'] = 'steemd.steemgigs.org';
+	$config['webservice_url'] = 'steemd.steemit.com';
 	$api = new SteemApi($config);
 
 		
@@ -8,25 +8,13 @@
 	$AccountTotal = $api->getAccountTotal($params, 'websocket');	
 	$IntendingWitnessTotal = $api->getIntendingWitnessCount($params, 'websocket');	
 	$ActiveWitnesses = $api->getActiveWitness($params, 'websocket');
-
-	
-
-	
-	
-	
-	
-	
-	
-	echo '<div style="padding-top: 4px;background: black">';
-	echo '<div style="font-size:20px;color: white;">Powered by <a style="color: royalblue;" href="http://steemd.steemgigs.com">steemd.steemgigs.com<a> & <a style="color: royalblue;" href="http://steemit.com/@surpassinggoogle">@SurpassingGoogle[Witness]<a></div>';
-	echo '</div>';	
-	
-	
-	
+	$Accounts = $api->getActiveWitness($params, 'websocket');
 	
 	echo '<div style="padding-top: 4px;background: black">';
 	echo '<div style="font-size:20px;color: white;">Steem Experiment by <a style="color: royalblue;" href="http://steemit.com/@akintunde">Akintunde<a></div>';
 	echo '</div>';
+	
+	
 	
 	?>
 	<!--
@@ -47,6 +35,19 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 		<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
 
 	<script src="js/jquery.min.js"></script>
+	
+	</script>
+<script type="text/javascript">
+var auto_refresh = setInterval(
+function ()
+{
+$('#loadPrice').load('price.php').fadeIn("slow");
+}, 1000); // refresh every 10000 milliseconds
+
+</script>
+	
+	
+	
 				<script type="text/javascript">
 					$(document).ready(function () {
 						$('#horizontalTab').easyResponsiveTabs({
@@ -56,12 +57,27 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 						});
 					});
 				</script>
+				
+			
 </head>
 <body>
-	<h1>Steem User</h1>
 	<div class="main-content">
-		
-        <div class="right-w3">
+
+	<div id='loadPrice' style="padding: 10px 0px 20px 0px;
+    background: transparent;
+    font-weight: 700;
+	margin-top: 10px;
+    padding: 0.7em 2em;
+    color: #FFFFFF;
+    margin-right: 10px;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    -ms-border-radius: 3px;
+    border-radius: 3px;
+    border: 1px solid #EFEFEF;
+    display: block;" ></div>
+	
+        <div class="right-w3" style="padding-top: 20px">
 			<div class="sap_tabs">	
 				<div id="horizontalTab" style="display: block; width: 100%; margin: 0px;">
 					<ul>

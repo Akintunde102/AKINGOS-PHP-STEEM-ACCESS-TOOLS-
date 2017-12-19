@@ -1,0 +1,1 @@
+{"ticker":{"base":"SBD","target":"USD","price":"13.63841100","volume":"","change":"-0.29105577","markets":[]},"timestamp":1513714742,"success":true,"error":""}

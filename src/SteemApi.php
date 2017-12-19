@@ -45,13 +45,8 @@ class SteemApi
     
     public function getCurrentMedianHistoryPrice($currency = 'STEEM')
     {
-        // TEMP: until I figure this out...
-        if ($currency == 'STEEM') {
-            return 0.80;
-        }
-        if ($currency == 'SBD') {
-            return 0.92;
-        }
+       
+		
         $result = $this->SteemLayer->call('get_current_median_history_price');
         $price = 0;
         if ($currency == 'STEEM') {
@@ -63,7 +58,7 @@ class SteemApi
         return $price;
     }
     
-    public function getContent($params)
+    public function getContent($params, $transport='curl')
     {
         $result = $this->steemlayer->call('get_content', $params);
         return $result;
@@ -86,11 +81,7 @@ class SteemApi
         return $result;
     }
 
-	public function getAccount($params)
-    {
-        $result = $this->SteemLayer->call('get_account', $params);
-        return $result;
-    }
+	
     
     public function getAccountHistory($params)
     {
