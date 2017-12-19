@@ -1,15 +1,16 @@
-<?php
-
-$steemDetails = file_get_contents('https://api.cryptonator.com/api/full/steem-usd/');
-$steemfile = fopen("steem.txt", "w") or die("Unable to open file!");
-fwrite($steemfile, $steemDetails);
-fclose($steemfile);
-
-$sbdDetails = file_get_contents('https://api.cryptonator.com/api/full/sbd-usd/');
-$sbdfile = fopen("sbd.txt", "w") or die("Unable to open file!");
-fwrite($sbdfile, $sbdDetails);
-fclose($sbdfile);
-
-
-
-?>
+	<?php
+	$steemDetails = file_get_contents('steem.txt');
+	echo '<span style="color:white;font-size: 30px;">';
+$steem = json_decode($steemDetails, true); // decode the JSON feed
+echo  'Steem: $'.round($steem[0]["price_usd"],3);
+	
+	echo '&nbsp;&nbsp;&nbsp; || &nbsp;&nbsp;&nbsp;</span>';
+	
+	
+	$sbdDetails = file_get_contents('sbd.txt');
+	echo '<span style="color:white;font-size: 30px;">';
+$sbd = json_decode($sbdDetails, true); // decode the JSON feed
+echo  'SBD: $'.round($sbd[0]["price_usd"],3);
+	
+	echo '</span>';
+	?>
