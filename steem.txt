@@ -1,1 +1,19 @@
-{"ticker":{"base":"STEEM","target":"USD","price":"3.07802443","volume":"","change":"-0.04850390","markets":[]},"timestamp":1513714742,"success":true,"error":""}
+[
+    {
+        "id": "steem", 
+        "name": "Steem", 
+        "symbol": "STEEM", 
+        "rank": "33", 
+        "price_usd": "3.78745", 
+        "price_btc": "0.00022828", 
+        "24h_volume_usd": "22354000.0", 
+        "market_cap_usd": "931534032.0", 
+        "available_supply": "245952826.0", 
+        "total_supply": "262926920.0", 
+        "max_supply": null, 
+        "percent_change_1h": "13.37", 
+        "percent_change_24h": "41.45", 
+        "percent_change_7d": "108.46", 
+        "last_updated": "1513823054"
+    }
+]

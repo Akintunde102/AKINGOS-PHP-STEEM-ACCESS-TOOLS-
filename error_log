@@ -1,0 +1,2 @@
+[21-Dec-2017 02:25:01 UTC] PHP Warning:  file_get_contents(https://api.cryptonator.com/api/full/steem-usd/): failed to open stream: Connection timed out in /home/atamata1/public_html/akin/steem/priceGet.php on line 3
+[21-Dec-2017 02:26:01 UTC] PHP Warning:  file_get_contents(https://api.cryptonator.com/api/full/sbd-usd/): failed to open stream: Connection timed out in /home/atamata1/public_html/akin/steem/priceGet.php on line 8
