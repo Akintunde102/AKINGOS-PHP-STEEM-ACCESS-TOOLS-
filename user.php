@@ -73,10 +73,20 @@ a:hover img.imagedropshadow {
 	margin-top: 10px;
     padding: 0.7em 2em;
     color: #FFFFFF;
-    margin-right: 10px;" > <span>Name:</span><span id="name" style="color: white;font-size: 27px;padding: 15px 4px 4px 10px;"> <img src="load.gif" height="60px" /></span> <hr/>
+    margin-right: 10px;" > <span>Name:</span><span id="name" style="color: white;font-size: 27px;padding: 15px 4px 4px 10px;"> <img src="load.gif" height="60px" /></span><i style="font-size:13px">[VP:<span id="vp" style="color: white;font-size: 13px;padding: 15px 4px 4px 10px;"><img src="load.gif" height="40px" /> </span> %] <i> <br/>
+	
+	<div id="about" style="color: white;font-size: 20px;color: pink;padding: 15px 4px 4px 10px;"><img src="load.gif" height=20px" /> </div> 
+	<hr/>
+ Total SBD Rewards Received: <span id="tsc" style="color: white;font-size: 27px;padding: 15px 4px 4px 10px;"><img src="load.gif" height="40px" /> </span> 
+ <hr/>
+UnReceived SBD: <span id="urs" style="color: white;font-size: 27px;padding: 15px 4px 4px 10px;"><img src="load.gif" height="40px" /> </span> 
+ <hr/>
+ Witness Voted For: <span id="wv" style="color: white;word-wrap: break-word;font-size: 27px;padding: 15px 4px 4px 10px;"><img src="load.gif" height="40px" /> </span>  <hr/>
  User Id: <span id="uid" style="color: white;font-size: 27px;padding: 15px 4px 4px 10px;"><img src="load.gif" height="40px" /> </span>  <hr/>
  Rank: <span id="rank" style="color: white;font-size: 27px;padding: 15px 4px 4px 10px;"><img src="load.gif" height="40px" /> </span>  <hr/>
- Vesting Shares: <span id="vs" style="color: white;font-size: 27px;padding: 15px 4px 4px 10px;"><img src="load.gif" height="40px" /> </span> <hr/> 
+ Received Vesting Shares: <span id="rvs" style="color: white;font-size: 27px;padding: 15px 4px 4px 10px;"><img src="load.gif" height="40px" /> </span> <hr/> 
+ Delegated Vesting Shares: <span id="dvs" style="color: white;font-size: 27px;padding: 15px 4px 4px 10px;"><img src="load.gif" height="40px" /> </span> <hr/> 
+ Total Vesting Shares: <span id="vs" style="color: white;font-size: 27px;padding: 15px 4px 4px 10px;"><img src="load.gif" height="40px" /> </span> <hr/> 
 
 
 	</div>		
@@ -89,9 +99,6 @@ a:hover img.imagedropshadow {
 	<?php if (!empty($_GET['u'])){ ?>
   
 <script type="text/javascript"> 
-
-
-
 var $_GET = {};
 
 if(document.location.toString().indexOf('?') !== -1) {
@@ -117,16 +124,30 @@ steem.api.getAccounts(
         alert('Failure! ' + err);
       else{
 		var string = JSON.stringify(result)
+		var witnesses = JSON.stringify(result[0].witness_votes)
 	    var json_metadata = JSON.parse(result[0].json_metadata)
-   var vs = result[0].vesting_shares;}
+   var vs = result[0].vesting_shares;
+   var dvs = result[0].delegated_vesting_shares;
+   var rvs = result[0].received_vesting_shares;
+   
+   }
 	 var vs = vs.replace(/[^0-9,\.]/g, '');
+	 var rvs = rvs.replace(/[^0-9,\.]/g, '');
+	 var dvs = dvs.replace(/[^0-9,\.]/g, '');
         document.getElementById('name').innerHTML = result[0].name;
    document.getElementById('uid').innerHTML = result[0].id;
+   document.getElementById('urs').innerHTML = result[0].sbd_balance;
+   document.getElementById('wv').innerHTML = witnesses;
+   document.getElementById('vp').innerHTML = result[0].voting_power / 100;
+   document.getElementById('tsc').innerHTML = result[0].posting_rewards / 1000;
+   document.getElementById('about').innerHTML = json_metadata.profile.about;
    document.getElementById('image').innerHTML = '<img width="300" height="300" class="imagedropshadow" src=' + json_metadata.profile.profile_image + ' />';
    
    
 	  
-	 
+
+
+	
 	  if (vs > 0 && vs < 999999) {document.getElementById('rank').innerHTML = 'Red Fish';}
 	 else  if (vs > 1000000 && vs < 9999999) {document.getElementById('rank').innerHTML = 'Minnow';}
 	 else  if (vs > 10000000 && vs < 99999999) {document.getElementById('rank').innerHTML = 'Dolphin';}
@@ -136,50 +157,7 @@ steem.api.getAccounts(
 	 
 	 //To format numbers
 function number_format(number, decimals, dec_point, thousands_sep) {
-    // http://kevin.vanzonneveld.net
-    // +   original by: Jonas Raoni Soares Silva (http://www.jsfromhell.com)
-    // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
-    // +     bugfix by: Michael White (http://getsprink.com)
-    // +     bugfix by: Benjamin Lupton
-    // +     bugfix by: Allan Jensen (http://www.winternet.no)
-    // +    revised by: Jonas Raoni Soares Silva (http://www.jsfromhell.com)
-    // +     bugfix by: Howard Yeend
-    // +    revised by: Luke Smith (http://lucassmith.name)
-    // +     bugfix by: Diogo Resende
-    // +     bugfix by: Rival
-    // +      input by: Kheang Hok Chin (http://www.distantia.ca/)
-    // +   improved by: davook
-    // +   improved by: Brett Zamir (http://brett-zamir.me)
-    // +      input by: Jay Klehr
-    // +   improved by: Brett Zamir (http://brett-zamir.me)
-    // +      input by: Amir Habibi (http://www.residence-mixte.com/)
-    // +     bugfix by: Brett Zamir (http://brett-zamir.me)
-    // +   improved by: Theriault
-    // +   improved by: Drew Noakes
-    // *     example 1: number_format(1234.56);
-    // *     returns 1: '1,235'
-    // *     example 2: number_format(1234.56, 2, ',', ' ');
-    // *     returns 2: '1 234,56'
-    // *     example 3: number_format(1234.5678, 2, '.', '');
-    // *     returns 3: '1234.57'
-    // *     example 4: number_format(67, 2, ',', '.');
-    // *     returns 4: '67,00'
-    // *     example 5: number_format(1000);
-    // *     returns 5: '1,000'
-    // *     example 6: number_format(67.311, 2);
-    // *     returns 6: '67.31'
-    // *     example 7: number_format(1000.55, 1);
-    // *     returns 7: '1,000.6'
-    // *     example 8: number_format(67000, 5, ',', '.');
-    // *     returns 8: '67.000,00000'
-    // *     example 9: number_format(0.9, 0);
-    // *     returns 9: '1'
-    // *    example 10: number_format('1.20', 2);
-    // *    returns 10: '1.20'
-    // *    example 11: number_format('1.20', 4);
-    // *    returns 11: '1.2000'
-    // *    example 12: number_format('1.2000', 3);
-    // *    returns 12: '1.200'
+    
     var n = !isFinite(+number) ? 0 : +number, 
         prec = !isFinite(+decimals) ? 0 : Math.abs(decimals),
         sep = (typeof thousands_sep === 'undefined') ? ',' : thousands_sep,
@@ -202,6 +180,8 @@ function number_format(number, decimals, dec_point, thousands_sep) {
 
 
 	 document.getElementById('vs').innerHTML = number_format(vs,2,'[dot]');
+ document.getElementById('dvs').innerHTML = number_format(dvs,2,'[dot]');
+ document.getElementById('rvs').innerHTML = number_format(rvs,2,'[dot]');
 
 	 
    }

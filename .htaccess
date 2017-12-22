@@ -3,5 +3,5 @@
 </IfModule>
 
 <IfModule mime_module>
-AddType application/x-httpd-php5 .php .html
+AddType application/x-httpd-php .php .html
 </IfModule>
