@@ -50,6 +50,58 @@ a:hover img.imagedropshadow {
 }</style>		
 </head>
 <body>
+
+
+<div style="width: 100%;">
+
+	
+<div style="width: 30%;
+    margin: 60px 50px;float: left;">
+
+	<div style="margin-top: 40px;border-radius: 3px;
+    border: 1px solid #EFEFEF; background: rgba(0,0,0,0.4);" action="user.php" target="result" method="get">
+
+	<a href="index.html"><div style="
+	width: 400px;color: #fff;
+    background: #ce224d;
+    padding: 12px 20px;
+    font-size: 16px;
+    border: none;
+    outline: none;
+    margin: 20px auto 10 auto;
+    display: block;
+    cursor: pointer;
+    transition: 0.5s all;
+    -webkit-transition: 0.5s all;
+    -moz-transition: 0.5s all;
+    -o-transition: 0.5s all;
+    -ms-transition: 0.5s all;">HOMEPAGE</div>	</a>	
+	</div>
+	
+	
+	<form style="margin-top: 40px;border-radius: 3px;
+    border: 1px solid #EFEFEF; background: rgba(0,0,0,0.4);" action="user.php" method="get">
+<div><legend style="color: white;font-size: 27px;padding: 15px 4px 4px 10px;"> Input Your Username in the field Below</legend> <input style="padding: 50px 0px 0px 0px;
+    background: transparent;
+    font-weight: 700;
+	margin: 10px 0 30px 8px;
+    padding: 0.7em 2em;
+	height: 50px;
+	width: 400px;
+    color: #FFFFFF;
+    margin-right: 10px;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    -ms-border-radius: 3px;
+    border-radius: 3px;
+    border: 1px solid #EFEFEF;
+    display: block;" type="text" name="u" placeholder="input your username here without @" />
+	<input style="height: 50px;
+	width: 400px;margin: -10px 0 30px 8px;" type="submit" value="Check Username"></div>		
+	</form>
+</div>
+	
+	
 	<div class="main-content">
 
 	<div id='loadPrice' style="padding: 10px 0px 20px 0px;
@@ -60,6 +112,9 @@ a:hover img.imagedropshadow {
     color: #FFFFFF;
     margin-right: 10px;
     display: block;" ></div>
+	
+	
+
 	
 	
 <div style="margin-top: 40px;border-radius: 3px;
@@ -73,10 +128,12 @@ a:hover img.imagedropshadow {
 	margin-top: 10px;
     padding: 0.7em 2em;
     color: #FFFFFF;
-    margin-right: 10px;" > <span>Name:</span><span id="name" style="color: white;font-size: 27px;padding: 15px 4px 4px 10px;"> <img src="load.gif" height="60px" /></span><i style="font-size:13px">[VP:<span id="vp" style="color: white;font-size: 13px;padding: 15px 4px 4px 10px;"><img src="load.gif" height="40px" /> </span> %] <i> <br/>
+    margin-right: 10px;" > <span>Name:</span><span id="uname" style="color: white;font-size: 27px;padding: 15px 4px 4px 10px;"> <img src="load.gif" height="60px" /></span><i style="font-size:13px">[VP:<span id="vp" style="color: white;font-size: 13px;padding: 15px 4px 4px 10px;"><img src="load.gif" height="40px" /> </span> %] <i> <br/>
 	
 	<div id="about" style="color: white;font-size: 20px;color: pink;padding: 15px 4px 4px 10px;"><img src="load.gif" height=20px" /> </div> 
 	<hr/>
+ get: <span id="get" style="color: white;font-size: 27px;padding: 15px 4px 4px 10px;"><img src="load.gif" height="40px" /> </span> 
+ <hr/>
  Total SBD Rewards Received: <span id="tsc" style="color: white;font-size: 27px;padding: 15px 4px 4px 10px;"><img src="load.gif" height="40px" /> </span> 
  <hr/>
 UnReceived SBD: <span id="urs" style="color: white;font-size: 27px;padding: 15px 4px 4px 10px;"><img src="load.gif" height="40px" /> </span> 
@@ -91,6 +148,11 @@ UnReceived SBD: <span id="urs" style="color: white;font-size: 27px;padding: 15px
 
 	</div>		
 	</div>
+	
+	
+	
+	
+	</div>
 
 	
 	
@@ -100,7 +162,6 @@ UnReceived SBD: <span id="urs" style="color: white;font-size: 27px;padding: 15px
   
 <script type="text/javascript"> 
 var $_GET = {};
-
 if(document.location.toString().indexOf('?') !== -1) {
     var query = document.location
                    .toString()
@@ -114,6 +175,25 @@ if(document.location.toString().indexOf('?') !== -1) {
        var aux = decodeURIComponent(query[i]).split('=');
        $_GET[aux[0]] = aux[1];
     }
+}
+else  if (location.href.match(/@/)) {
+                 var split = location.href.split("@");
+var username = split[1];
+ console.log(split[1]);
+ $_GET['u'] = username;
+            }
+else {
+	
+	//this gets the full url
+var url = document.location.href;
+//this removes the anchor at the end, if there is one
+url = url.substring(0, (url.indexOf("#") == -1) ? url.length : url.indexOf("#"));
+//this removes the query after the file name, if there is one
+url = url.substring(0, (url.indexOf("?") == -1) ? url.length : url.indexOf("?"));
+//this removes everything before the last slash in the path
+url = url.substring(url.lastIndexOf("/") + 1, url.length);
+//return
+$_GET['u'] = url;	
 }
 
 
@@ -129,12 +209,15 @@ steem.api.getAccounts(
    var vs = result[0].vesting_shares;
    var dvs = result[0].delegated_vesting_shares;
    var rvs = result[0].received_vesting_shares;
+   var get = $_GET['u'];
    
    }
 	 var vs = vs.replace(/[^0-9,\.]/g, '');
 	 var rvs = rvs.replace(/[^0-9,\.]/g, '');
 	 var dvs = dvs.replace(/[^0-9,\.]/g, '');
-        document.getElementById('name').innerHTML = result[0].name;
+        //document.getElementById('name').innerHTML = result[0].name;
+           document.getElementById('get').innerHTML = get;
+        document.getElementById('uname').innerHTML = '<a href="http://steemit.com/@' + result[0].name + '"  target="_blank" >@' + result[0].name + '</a>';
    document.getElementById('uid').innerHTML = result[0].id;
    document.getElementById('urs').innerHTML = result[0].sbd_balance;
    document.getElementById('wv').innerHTML = witnesses;
@@ -142,13 +225,14 @@ steem.api.getAccounts(
    document.getElementById('tsc').innerHTML = result[0].posting_rewards / 1000;
    document.getElementById('about').innerHTML = json_metadata.profile.about;
    document.getElementById('image').innerHTML = '<img width="300" height="300" class="imagedropshadow" src=' + json_metadata.profile.profile_image + ' />';
+
    
    
 	  
 
 
 	
-	  if (vs > 0 && vs < 999999) {document.getElementById('rank').innerHTML = 'Red Fish';}
+	  if (vs > 0 && vs < 999999) {document.getElementById('rank').innerHTML = 'Red Fish / Plankton';}
 	 else  if (vs > 1000000 && vs < 9999999) {document.getElementById('rank').innerHTML = 'Minnow';}
 	 else  if (vs > 10000000 && vs < 99999999) {document.getElementById('rank').innerHTML = 'Dolphin';}
 	 else  if (vs > 100000000 && vs < 999999999) {document.getElementById('rank').innerHTML = 'Orca';}

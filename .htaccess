@@ -5,3 +5,10 @@
 <IfModule mime_module>
 AddType application/x-httpd-php .php .html
 </IfModule>
+
+
+RewriteEngine On
+RewriteRule ^([^\.]+)$ user.php?u=$1
+RewriteRule ^([^\.]+)$ user.php?u=$1
+RewriteRule ^@([^\.]+)$ user.php?u=$1
+RewriteRule ^@([^\.]+)$ user.php?u=$1

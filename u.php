@@ -133,7 +133,7 @@ steem.api.getAccounts(
    
 	  
 	 
-	  if (vs > 0 && vs < 999999) {document.getElementsByTagName('div')[4].innerHTML = 'Red Fish';}
+	  if (vs > 0 && vs < 999999) {document.getElementsByTagName('div')[4].innerHTML = 'Red Fish /Plankton';}
 	 else  if (vs > 1000000 && vs < 9999999) {document.getElementsByTagName('div')[4].innerHTML = 'Minnow';}
 	 else  if (vs > 10000000 && vs < 99999999) {document.getElementsByTagName('div')[4].innerHTML = 'Dolphin';}
 	 else  if (vs > 100000000 && vs < 999999999) {document.getElementsByTagName('div')[4].innerHTML = 'Orca';}

@@ -3,17 +3,17 @@
         "id": "steem-dollars", 
         "name": "Steem Dollars", 
         "symbol": "SBD", 
-        "rank": "199", 
-        "price_usd": "8.21876", 
-        "price_btc": "0.00063944", 
-        "24h_volume_usd": "3341830.0", 
-        "market_cap_usd": "33932137.0", 
-        "available_supply": "4128620.0", 
-        "total_supply": "4128620.0", 
+        "rank": "216", 
+        "price_usd": "9.41591", 
+        "price_btc": "0.00067443", 
+        "24h_volume_usd": "1861880.0", 
+        "market_cap_usd": "40246775.0", 
+        "available_supply": "4274337.0", 
+        "total_supply": "4274337.0", 
         "max_supply": null, 
-        "percent_change_1h": "2.17", 
-        "percent_change_24h": "-34.79", 
-        "percent_change_7d": "-21.82", 
-        "last_updated": "1513965563"
+        "percent_change_1h": "0.64", 
+        "percent_change_24h": "-3.78", 
+        "percent_change_7d": "-26.94", 
+        "last_updated": "1514186947"
     }
 ]
