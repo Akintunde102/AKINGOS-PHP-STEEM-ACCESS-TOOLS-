@@ -15,7 +15,7 @@
 		<link href="//fonts.googleapis.com/css?family=Ropa+Sans:400,400i&amp;subset=latin-ext" rel="stylesheet">
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-		<meta name="keywords" content="Simple Tab Forms Widget Responsive, Login Form Web Template, Flat Pricing Tables, Flat Drop-Downs, Sign-Up Web Templates, Flat Web Templates, Login Sign-up Responsive Web Template, Smartphone Compatible Web Template, Free Web Designs for Nokia, Samsung, LG, Sony Ericsson, Motorola Web Design" />>
+		<meta name="keywords" content="Steem Blockchain" />>
 
 	<script src="js/jquery.min.js"></script>
 <script src="https://cdn.steemjs.com/lib/latest/steem.min.js"></script>
@@ -111,7 +111,8 @@ a:hover img.imagedropshadow {
     padding: 0.7em 2em;
     color: #FFFFFF;
     margin-right: 10px;
-    display: block;" ></div>
+    display: block;border-radius: 3px;
+    border: 1px solid #EFEFEF; background: rgba(0,0,0,0.4);" ></div>
 	
 	
 
@@ -131,8 +132,9 @@ a:hover img.imagedropshadow {
     margin-right: 10px;" > <span>Name:</span><span id="uname" style="color: white;font-size: 27px;padding: 15px 4px 4px 10px;"> <img src="load.gif" height="60px" /></span><i style="font-size:13px">[VP:<span id="vp" style="color: white;font-size: 13px;padding: 15px 4px 4px 10px;"><img src="load.gif" height="40px" /> </span> %] <i> <br/>
 	
 	<div id="about" style="color: white;font-size: 20px;color: pink;padding: 15px 4px 4px 10px;"><img src="load.gif" height=20px" /> </div> 
+	<div id="website" style="color: white;font-size: 20px;color: blue;padding: 15px 4px 4px 10px;"><img src="load.gif" height=20px" /> </div> 
 	<hr/>
- get: <span id="get" style="color: white;font-size: 27px;padding: 15px 4px 4px 10px;"><img src="load.gif" height="40px" /> </span> 
+ Post Count: <span id="post" style="color: white;font-size: 27px;padding: 15px 4px 4px 10px;"><img src="load.gif" height="40px" /> </span> 
  <hr/>
  Total SBD Rewards Received: <span id="tsc" style="color: white;font-size: 27px;padding: 15px 4px 4px 10px;"><img src="load.gif" height="40px" /> </span> 
  <hr/>
@@ -144,6 +146,8 @@ UnReceived SBD: <span id="urs" style="color: white;font-size: 27px;padding: 15px
  Received Vesting Shares: <span id="rvs" style="color: white;font-size: 27px;padding: 15px 4px 4px 10px;"><img src="load.gif" height="40px" /> </span> <hr/> 
  Delegated Vesting Shares: <span id="dvs" style="color: white;font-size: 27px;padding: 15px 4px 4px 10px;"><img src="load.gif" height="40px" /> </span> <hr/> 
  Total Vesting Shares: <span id="vs" style="color: white;font-size: 27px;padding: 15px 4px 4px 10px;"><img src="load.gif" height="40px" /> </span> <hr/> 
+ JSON Details: <span id="get" style="color: white;font-size: 27px;padding: 15px 4px 4px 10px;"><img src="load.gif" height="40px" /> </span> 
+ <hr/>
 
 
 	</div>		
@@ -216,22 +220,18 @@ steem.api.getAccounts(
 	 var rvs = rvs.replace(/[^0-9,\.]/g, '');
 	 var dvs = dvs.replace(/[^0-9,\.]/g, '');
         //document.getElementById('name').innerHTML = result[0].name;
-           document.getElementById('get').innerHTML = get;
+           document.getElementById('get').innerHTML = '<form action="json.php" method="post"><textarea name="details">'+string+'</textarea><input value="VIEW JSON"  type="submit" /></form>';
         document.getElementById('uname').innerHTML = '<a href="http://steemit.com/@' + result[0].name + '"  target="_blank" >@' + result[0].name + '</a>';
    document.getElementById('uid').innerHTML = result[0].id;
    document.getElementById('urs').innerHTML = result[0].sbd_balance;
+   document.getElementById('post').innerHTML = result[0].post_count + ' Posts';
    document.getElementById('wv').innerHTML = witnesses;
    document.getElementById('vp').innerHTML = result[0].voting_power / 100;
    document.getElementById('tsc').innerHTML = result[0].posting_rewards / 1000;
    document.getElementById('about').innerHTML = json_metadata.profile.about;
+   document.getElementById('website').innerHTML = '<h3 style="color: white;">website:</h3>'+json_metadata.profile.website;
    document.getElementById('image').innerHTML = '<img width="300" height="300" class="imagedropshadow" src=' + json_metadata.profile.profile_image + ' />';
 
-   
-   
-	  
-
-
-	
 	  if (vs > 0 && vs < 999999) {document.getElementById('rank').innerHTML = 'Red Fish / Plankton';}
 	 else  if (vs > 1000000 && vs < 9999999) {document.getElementById('rank').innerHTML = 'Minnow';}
 	 else  if (vs > 10000000 && vs < 99999999) {document.getElementById('rank').innerHTML = 'Dolphin';}

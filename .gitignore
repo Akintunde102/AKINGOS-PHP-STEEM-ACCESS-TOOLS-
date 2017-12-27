@@ -1,6 +1,0 @@
-vendor/
-examples/vendor/
-examples/composer.lock
-examples/composer.phar
-composer.lock
-.DS_Store

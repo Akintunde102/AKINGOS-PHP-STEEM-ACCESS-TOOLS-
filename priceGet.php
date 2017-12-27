@@ -1,5 +1,4 @@
 <?php
-
 $steemDetails = file_get_contents('https://api.coinmarketcap.com/v1/ticker/steem/');
 $steemfile = fopen("steem.txt", "w") or die("Unable to open file!");
 fwrite($steemfile, $steemDetails);
@@ -9,6 +8,11 @@ $sbdDetails = file_get_contents('https://api.coinmarketcap.com/v1/ticker/steem-d
 $sbdfile = fopen("sbd.txt", "w") or die("Unable to open file!");
 fwrite($sbdfile, $sbdDetails);
 fclose($sbdfile);
+
+$btcDetails = file_get_contents('https://api.coinmarketcap.com/v1/ticker/bitcoin/');
+$btcfile = fopen("btc.txt", "w") or die("Unable to open file!");
+fwrite($btcfile, $btcDetails);
+fclose($btcfile);
 
 
 

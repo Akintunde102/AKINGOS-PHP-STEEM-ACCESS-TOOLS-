@@ -461,3 +461,10 @@ input[type="submit"] {
     margin: 20px auto 0 auto;
 }
 }
+
+
+@media (max-width: 768px) {
+  .custom-height {
+    height: 100%;
+  }
+}
