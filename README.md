@@ -40,7 +40,7 @@ The /tests folder is for testing the php classes that act as a layer between the
 ## Installation 
 Installation is very easy. Just follow the following steps
 
-1. Download this script as a zip file (from [here](https://github.com/Akintunde102/AKINGOS-PHP-STEEM-ACCESS-TOOLS-/archive/master.zip-))
+1. Download this script as a zip file (from [here](https://github.com/Akintunde102/AKINGOS-PHP-STEEM-ACCESS-TOOLS-/archive/master.zip))
 2. Copy to your server  www (or htdocs) folder
 3. That's it 
 4. Just view from your server domain name (or from localhost if you are in a local environment)
