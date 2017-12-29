@@ -58,5 +58,8 @@ Installation is very easy. Just follow the following steps
 **github:** @akintunde102<br/>
 
 
+## More ScreenShots
+![Preview](http://steem.akin.com.ng/1.PNG)
+![Preview](http://steem.akin.com.ng/2.PNG)
  
 
