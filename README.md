@@ -10,7 +10,7 @@
 **APP Address:** steem.akin.com.ng <br/>
 
 ## Short Summary:
-This script act as an alternative profile for steem blockchain users as it shows cerain details that are not present on the steemit profile page.
+This script act as an alternative profile for steem blockchain users as it shows certain details that are not present on the steemit profile page.
 
 ## Description:
 This script displays your user rank (minnow, orca, whale and so on), It shows prices of sbd, steem and even bitcoin at a real time of less than 1 second. It also shows the number of witnesses you have voted for and much more. <br/>
@@ -22,11 +22,11 @@ Below is a preview:
 
 
 ## How it works:
-The script has a welcoming index page that contains certain details like the price tickers for sbd, steem and btc and a link that leads to u.php where users can fill a form with their username (without the @ symbol), it then leads the to user.php, where all the user details are displayed by using the steemjs javascript api calls.
+The script has a welcoming index page that contains certain details like the price tickers for sbd, steem and btc and a link that leads to *u.php* where users can fill a form with their username (without the @ symbol), it then leads the to user.php, where all the user details are displayed by using the steemjs javascript api calls.
 
 Users can also directly use the profile fancy url feature by using this format (steem.com.ng/username) or (steem.com.ng/username). This is being handled by the htaccess.
 
-The htaccess codes locks the index to index.html, so other index with other extensions will not act as index unless the htaccess is edited.
+The htaccess codes locks the index to index.html, so other index pages with other extensions will not act as index unless the htaccess is edited.
 
 The htaccess also helps tell the server to process all html files as php files.
 
@@ -47,9 +47,9 @@ Installation is very easy. Just follow the following steps
 
 
 ## Changelog
+ 1.0
 
-## 1.0
-Initial Version<br/>
+## Initial Version
 
 ## Contact Me
 **Discord**: @akintunde <br/>
